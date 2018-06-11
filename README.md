@@ -28,10 +28,15 @@ SELECT mean("distance") FROM "ConnectedParking" WHERE ("measure" = 'ParkingSpot-
 
 ## MQTT Metrics to Prometheus
 
+Start the metrics service.
 ```
 ./mosquitto-exporter -e "tcp://mqtt.cisco.com:1883" -b "0.0.0.0:8080"
 ```
 
+Query for MQTT health.
+```
+(broker_clients_connected{job="connected_city"})
+```
 
 ## Stop Cluster
 ```
