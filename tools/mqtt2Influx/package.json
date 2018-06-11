@@ -1,0 +1,17 @@
+{
+  "name": "mqtt2influx",
+  "version": "1.0.0",
+  "description": "Listens to MQTT and inserts in InfluxDB",
+  "main": "app.js",
+  "dependencies": {
+    "influx": "^5.0.7",
+    "mqtt": "^2.18.0",
+    "util": "^0.11.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "geekbleek",
+  "license": "MIT"
+}
