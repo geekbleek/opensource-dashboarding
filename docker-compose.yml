@@ -1,0 +1,30 @@
+version: "3.5"
+
+configs:
+  prometheusConfig:
+    file: ./configs/prometheus.yml
+
+services:
+    influxdb:
+      image: influxdb
+      ports:
+        - "8086:8086"
+      environment:
+        - INFLUXDB_HTTP_AUTH_ENABLED=true
+        - INFLUXDB_ADMIN_USER=devnet
+        - INFLUXDB_ADMIN_PASSWORD=cisco123
+        - INFLUXDB_DB=devnet
+    prometheus:
+      image: prom/prometheus
+      ports:
+        - "9090:9090"
+      configs:
+        - source: prometheusConfig
+          target: /etc/prometheus/prometheus.yml
+    grafana:
+      image: grafana/grafana
+      ports:
+        - "3000:3000"
+      depends_on:
+        - influxdb
+        - prometheus
