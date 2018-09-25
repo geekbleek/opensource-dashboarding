@@ -32,7 +32,8 @@ Let's get some MQTT data, and store it in our InfluxDB!
 
 ```
 cd ./
-
+insert command here
+```
 
 ## Sample Query for InfluxDB
 
