@@ -12,12 +12,26 @@ docker swarm init
 docker stack deploy -c docker-compose.yml dashboard
 ```
 
-## Access URLs
+## External Service Access URLs
 
 You can access the services at the following URLs:
 - Grafana: [http://localhost:3000/login](http://localhost:3000/login)
 - Prometheus: [http://localhost:9090/graph](http://localhost:9090/graph)
 - InfluxDB: [http://localhost:8086](http://localhost:8086)
+
+## Docker Internal Network URLs
+
+To reach other services within the same Docker swarm, you will need to use their internal DNS names as follows:
+- Grafana: [http://grafana:3000/login](http://grafana:3000/login)
+- Prometheus: [http://prometheus:9090/graph](http://prometheus:9090/graph)
+- InfluxDB: [http://influxdb:8086](http://influxdb:8086)
+
+##
+
+Let's get some MQTT data, and store it in our InfluxDB!
+
+```
+cd ./
 
 
 ## Sample Query for InfluxDB
