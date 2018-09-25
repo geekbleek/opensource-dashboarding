@@ -31,19 +31,25 @@ To reach other services within the same Docker swarm, you will need to use their
 Let's get some MQTT data, and store it in our InfluxDB!
 
 ```
-cd ./
-insert command here
+cd ./tools/mqtt2Influx/
+npm install
+node app.js
+```
+Now when MQTT events are received, you should see a message logged indicating MQTT messages have been stored to InfluxDB:
+
+```
+Message stored in InfluxDB is {"measurement":"engine-health","tags":{"measure":"engine1"},"fields":{"vibration":0.2980646207896934},"timestamp":1537890522014000000}
 ```
 
 ## Sample Query for InfluxDB
 
 ```
-SELECT mean("distance") FROM "ConnectedParking" WHERE ("measure" = 'ParkingSpot-01') AND $timeFilter GROUP BY time($__interval) fill(null)
+SELECT mean("vibration") FROM "engine-health" WHERE ("measure" = 'engine1') AND $timeFilter GROUP BY time(1s) fill(none)
 ```
 
 ## MQTT Metrics to Prometheus
 
-Start the metrics service.
+Now lets show how Prometheus can pull data.  Let's start the metrics service.
 ```
 ./mosquitto-exporter -e "tcp://mqtt.cisco.com:1883" -b "0.0.0.0:8080"
 ```
