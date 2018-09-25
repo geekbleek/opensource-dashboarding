@@ -3,14 +3,14 @@ const mqtt = require('mqtt');
 const Influx = require('influx');
 
 var mqttClient;
-var influxhost = 'localhost';
+var influxhost = '127.0.0.1';
 var influxport = 8086;
 var influxUsername = 'devnet';
 var influxPassword = 'cisco123';
 var databasename = 'devnet';
 var mqtthost = 'mqtt.cisco.com';
 var mqttport = 1883;
-var topics = ['devnet/parking/#'];
+var topics = ['devnet/sample/#'];
 var influx;
 
 
@@ -44,14 +44,14 @@ function getMeasurementNameFromTopic(topic) {
 
 
 function convertToInfluxPoint(topic, message) {
-    var fieldName = message.block;
-    var value = message['dist-1'];
+    var fieldName = getMeasurementNameFromTopic(topic);
+    // var value = message['dist-1'];
     var fields = {};
-    fields['distance'] = value;
+    fields['vibration'] = message['vibration'];
     currentDate = Date.now();
     timestamp = currentDate * 1000000;
     return {
-        measurement: 'ConnectedParking',
+        measurement: 'engine-health',
         tags: { measure: fieldName},
         fields : fields,
         "timestamp" : timestamp
