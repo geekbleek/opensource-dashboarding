@@ -43,7 +43,7 @@ Message stored in InfluxDB is {"measurement":"engine-health","tags":{"measure":"
 
 ## Connect Grafana to InfluxDB
 
-Great! Now we have data going into our influxDB.  Let's connect Grafant to influxDB to visualize it!  From the Grafana admin dashboard, select add new data source.  Choose influxDB as the type.  The URL to connect to is container to container traffic, so it should be http://influxdb:8086.  
+Great! Now we have data going into our InfluxDB.  Let's connect Grafana to InfluxDB to visualize it!  From the Grafana admin dashboard, select "add new data source".  Choose influxDB as the type.  The URL to connect to is container to container traffic, so it should be http://influxdb:8086.  
 
 DB details are: 
 Database: devnet
@@ -53,7 +53,7 @@ Password: cisco123
 Click save & test to save the connection.  If correctly configured, a green indicator will say "data source is working".
 
 ## Create our first dashboard
-From Grafana homepage, click "New dashboard".
+From Grafana homepage, click "New dashboard".  Select "Add Query".  Select the Influx DB data source.  Under visualization type, select line graph.
 
 
 ## Sample Query for InfluxDB
